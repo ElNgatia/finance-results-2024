@@ -2,6 +2,12 @@ import React, { useState } from 'react';
 import votingResults from './data/votingResults';
 import { Table, Form } from 'react-bootstrap';
 
+const totalYes = votingResults.filter(result => result.vote === 'YES').length;
+const totalAbsent = votingResults.filter(result => result.vote === 'ABSENT').length;
+const totalNo = votingResults.filter(result => result.vote === 'NO').length;
+const totalSuspended = votingResults.filter(result => result.vote === 'SUSPENDED').length;
+const totalVacant = votingResults.filter(result => result.vote === 'VACANT').length;
+
 const VotingResultsTable = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -13,11 +19,11 @@ const VotingResultsTable = () => {
     <div>
       <div className="d-flex justify-content-between align-items-center mb-3">
         <div>
-          <span className="badge bg-success me-2">YES 176</span>
-          <span className="badge bg-dark me-2">ABSENT 86</span>
-          <span className="badge bg-danger me-2">NO 81</span>
-          <span className="badge bg-warning text-dark me-2">SUSPENDED 6</span>
-          <span className="badge bg-secondary">VACANT 1</span>
+          <span className="badge bg-success me-2">YES {totalYes}</span>
+          <span className="badge bg-dark me-2">ABSENT {totalAbsent}</span>
+          <span className="badge bg-danger me-2">NO {totalNo}</span>
+          <span className="badge bg-warning text-dark me-2">SUSPENDED {totalSuspended}</span>
+          <span className="badge bg-secondary">VACANT {totalVacant}</span>
         </div>
         <Form.Control
           type="text"
